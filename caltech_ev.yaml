@@ -1,0 +1,48 @@
+# Use forward slashes '/' in paths, space after the first colon, double quotes around further colons, no trailing comma
+version: 24
+note: DEV
+data_dir: ~/OneDrive/Data
+data_dir_gpu: C:/Users/Admin/OneDrive - Politecnico di Milano/Data
+gpu: false
+test: false
+load_file: /Load/Vehicle/ACN/old/acn_caltech.csv
+solar_files: /Solar/Modelled/
+solar_scaler: 1.0
+solar_angles: [s20, s20w90_50_50, w90]
+#solar_angles: [s20, s20w90_75_25, s20w90_50_50, s20w90_25_75, w90]
+batt_kwhs: [50,100,150,200]
+#power_prices: [10,20,30]
+#sell_prices: [0.025,0.05,0.075,0.10]
+#energy_prices_adder_2: [0.05,0.10,0.15]
+#energy_prices_adder_3: [0.025,0.05,0.075]
+energy_price_sell_vector: Data/PG&E NBT EEC Values 2024 Vintage.csv
+
+#batt_kwhs: [10,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600]
+sim_begin: 2018-5-1
+sim_end: 2019-2-28
+grid_search_prices: false
+grid_search_max: 110
+grid_search_step: 10
+gradient_descent: false
+# each tou period must start with "tou" and then can be any string
+# power price is in $/kW
+# energy price is in $/kWh
+tou_AllHoursWum:     { months: [6,7,8,9],        power_price: 26.07,   energy_price_buy_sell: [0    ,0],  from_to_h: [[0,24],   [0,0],      [0,0]]}
+tou_OffPeakSum:      { months: [6,7,8,9],        power_price: 0,       energy_price_buy_sell: [0.132,0],  from_to_h: [[0,14],   [23,24],    [0,0]]}
+tou_PartialPeakSum": { months: [6,7,8,9],        power_price: 6.81,    energy_price_buy_sell: [0.159,0],  from_to_h: [[14,16],  [21,23],    [0,0]]}
+tou_PeakSum:         { months: [6,7,8,9],        power_price: 32.9,    energy_price_buy_sell: [0.196,0],  from_to_h: [[16,21],  [0,0],      [0,0]]}
+tou_AllHoursWin:     { months: [1,2,10,11,12],   power_price: 26.07,   energy_price_buy_sell: [0    ,0],  from_to_h: [[0,24],   [0,0],      [0,0]]}
+tou_OffPeakWin":     { months: [1,2,10,11,12],   power_price: 0,       energy_price_buy_sell: [0.132,0],  from_to_h: [[0,16],   [21,24],    [0,0]]}
+tou_PartialPeakWin:  { months: [1,2,10,11,12],   power_price: 0,       energy_price_buy_sell: [0    ,0],  from_to_h: [[14,16],  [21,23],    [0,0]]}
+tou_PeakWin:         { months: [1,2,10,11,12],   power_price: 2.2,     energy_price_buy_sell: [0.172,0],  from_to_h: [[16,21],  [0,0],      [0,0]]}
+tou_AllHoursSpr:     { months: [3,4,5],          power_price: 26.07,   energy_price_buy_sell: [0    ,0],  from_to_h: [[0,24],   [0,0],      [0,0]]}
+tou_SuperOffPeakSpr: { months: [3,4,5],          power_price: 0,       energy_price_buy_sell: [0.079,0],  from_to_h: [[9,14],   [0,0],      [0,0]]}
+tou_OffPeakSpr:      { months: [3,4,5],          power_price: 0,       energy_price_buy_sell: [0.132,0],  from_to_h: [[0,9],    [14,16],    [21,24]]}
+tou_PeakSpr:         { months: [3,4,5],          power_price: 2.2,     energy_price_buy_sell: [0.172,0],  from_to_h: [[16,21],  [0,0],      [0,0]]}
+# tou_0: { months: [1,2,3,4,5,6,7,8,9,10,11,12],   power_price: 0,   energy_price_buy_sell: [0.0,   0.0],   from_to_h: [[0,24]]}
+# tou_1: { months: [1,2,3,4,5,6,7,8,9,10,11,12],   power_price: 0,   energy_price_buy_sell: [0.0,   0.0],   from_to_h: [[0,24]]}
+# tou_2: { months: [1,2,3,4,5,6,7,8,9,10,11,12],   power_price: 0,   energy_price_buy_sell: [0.15,  0.05],  from_to_h: [[0,16],  [20,24]]}
+# tou_3: { months: [1,2,3,4,5,6,7,8,9,10,11,12],   power_price: 20,  energy_price_buy_sell: [0.20,  0.05],  from_to_h: [[16,20]]}
+# from_to_h pairs of numbers are such that the first h-value is inclusive and the second h-value is exclusive
+# can include as many pairs as you like
+# (e.g. [14,16] means 14:00 to 15:59)
